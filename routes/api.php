@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -13,6 +11,8 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:api');
+
+Route::get('/quizzes', 'QuizController@getQuizzes');
+Route::get('/quiz/{quizId}', 'QuizController@getQuiz');
+Route::get('/question/{questionId}', 'QuizController@getQuestion');
+Route::put('/result/{quizId}', 'QuizController@getResult');
