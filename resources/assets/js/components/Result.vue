@@ -11,6 +11,8 @@
 </template>
 
 <script>
+import Api from '../Api.js';
+
 export default {
     props: ['quiz', 'responses'],
     data() {
@@ -23,11 +25,8 @@ export default {
     },
     methods: {
         showResult() {
-            this.$http.put(`/api/result/${this.quiz.id}`, {responses: this.responses})
-                .then((response) => response.body)
-                .then((result) => {
-                    this.result = result;
-                });
+            Api.createResult(this.quiz.id, this.responses)
+                .then((result) => this.result = result);
         }
     }
 }

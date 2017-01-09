@@ -27,6 +27,8 @@
 </template>
 
 <script>
+    import Api from '../Api.js';
+
     export default {
         data() {
             return {
@@ -58,9 +60,9 @@
                     return;
                 }
                 var questionId = this.quiz.questions[this.questionNumber];
-                this.$http.get(`/api/question/${questionId}`)
-                    .then((response) => {
-                        this.question = response.body;
+                return Api.getQuestion(questionId)
+                    .then((question) => {
+                        this.question = question;
                         this.questionNumber++;
                     })
             },

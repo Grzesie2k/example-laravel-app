@@ -11,6 +11,8 @@
 </template>
 
 <script>
+import Api from '../Api.js';
+
 export default {
     data() {
         return {
@@ -18,17 +20,15 @@ export default {
         }
     },
     mounted() {
-        this.$http.get('/api/quizzes')
-            .then((response) => {
-                this.quizzes = response.body;
+        return Api.getQuizzes()
+            .then((quizzes) => {
+                this.quizzes = quizzes;
             });
     },
     methods: {
         selectQuiz(quiz) {
-            this.$http.get(`/api/quiz/${quiz.id}`)
-                .then((response) => {
-                    this.$emit('select', response.body);
-                });
+            return Api.getQuiz(quiz.id)
+                .then((quiz) => this.$emit('select', quiz));
         }
     }
 }
