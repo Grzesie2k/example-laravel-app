@@ -20,7 +20,6 @@
                 </footer>
             </div>
         </div>
-        <script>window.Laravel = {csrfToken: '{{ csrf_token() }}'}</script>
         <script src="{{ URL::asset('js/vendor.js') }}"></script>
         <script src="{{ URL::asset('js/app.js') }}"></script>
     </body>
