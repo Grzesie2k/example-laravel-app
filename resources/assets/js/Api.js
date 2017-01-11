@@ -1,6 +1,8 @@
+import Config from './Config';
+
 export default {
     http: Vue.http,
-    prefix: '/api',
+    prefix: Config.endpoint,
     getQuizzes() {
         let url = [this.prefix, 'quizzes'].join('/');
         return this.http.get(url)
