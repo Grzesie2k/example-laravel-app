@@ -7,7 +7,6 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateMarksTable extends Migration
 {
-    const TABLE = 'marks';
 
     /**
      * Run the migrations.
