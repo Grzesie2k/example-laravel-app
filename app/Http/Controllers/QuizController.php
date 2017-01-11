@@ -8,7 +8,6 @@ use App\Quiz;
 use App\Response;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 class QuizController extends Controller
 {
@@ -58,13 +57,8 @@ class QuizController extends Controller
      */
     public function getResult($quizId, Request $request)
     {
-        $responses = array_map(function ($responseId) use ($quizId) {
-            return Response::findOrFail($responseId);
-        }, $request->get('responses', []));
-
-        $total = array_sum(array_map(function ($response) {
-            return $response->value;
-        }, $responses));
+        $responses = $request->get('responses', []);
+        $total = Response::findOrFail($responses)->sum('value');
 
         $mark = Mark::where('quiz_id', $quizId)->where('value', '<=', $total)
             ->orderBy('value', 'desc')
