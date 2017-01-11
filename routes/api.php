@@ -16,3 +16,7 @@ Route::get('/quizzes', 'QuizController@getQuizzes');
 Route::get('/quiz/{quizId}', 'QuizController@getQuiz');
 Route::get('/question/{questionId}', 'QuizController@getQuestion');
 Route::put('/result/{quizId}', 'QuizController@getResult');
+Route::options('/result/{quizId}', function () {
+    // CORS preflight
+    return '';
+});
