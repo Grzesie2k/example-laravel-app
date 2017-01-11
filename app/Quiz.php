@@ -15,4 +15,9 @@ class Quiz extends Model
     {
         return $this->hasMany(Mark::class);
     }
+
+    public function method()
+    {
+        return $this->belongsTo(Method::class);
+    }
 }

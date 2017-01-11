@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mark;
+use App\Method;
 use App\Question;
 use App\Quiz;
 use App\Response;
@@ -57,8 +58,9 @@ class QuizController extends Controller
      */
     public function getResult($quizId, Request $request)
     {
+        $quiz = Quiz::findOrFail($quizId);
         $responses = $request->get('responses', []);
-        $total = Response::findOrFail($responses)->sum('value');
+        $total = static::calculateResult($responses, $quiz->method);
 
         $mark = Mark::where('quiz_id', $quizId)->where('value', '<=', $total)
             ->orderBy('value', 'desc')
@@ -68,5 +70,25 @@ class QuizController extends Controller
             'total' => $total,
             'mark' => $mark
         ]);
+    }
+
+    /**
+     * @param int[] $responses
+     * @param Method $method
+     * @throws \Exception
+     * @return float
+     */
+    protected static function calculateResult(array $responses, Method $method) {
+        switch ($method->id) {
+            case Method::ID_SUM:
+                return Response::findOrFail($responses)->sum('value');
+            case Method::ID_DOMINANT:
+                $responses = array_count_values($responses);
+                $response = array_search(max($responses), $responses);
+
+                return Response::findOrFail($response)->value;
+            default:
+                throw new \Exception("Unknown aggregate function.");
+        }
     }
 }
