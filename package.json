@@ -2,6 +2,7 @@
   "private": true,
   "scripts": {
     "prod": "gulp --production",
+    "demo": "static demo",
     "dev": "gulp watch"
   },
   "devDependencies": {
@@ -10,6 +11,7 @@
     "laravel-elixir": "^6.0.0-9",
     "laravel-elixir-vue-2": "^0.2.0",
     "laravel-elixir-webpack-official": "^1.0.2",
+    "node-static": "^0.7.9",
     "vue": "^2.0.1",
     "vue-resource": "^1.0.3"
   }
