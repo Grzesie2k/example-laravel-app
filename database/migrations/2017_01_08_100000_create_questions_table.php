@@ -19,14 +19,8 @@ class CreateQuestionsTable extends Migration
             $table->integer('quiz_id')->unsigned();
             $table->foreign('quiz_id')->references('id')->on('quizzes')->onDelete('cascade');
             $table->string('name');
+            $table->timestamps();
         });
-
-        DB::table('questions')->insert(['quiz_id' => 1, 'name' => 'W jakim ośrodku dzwięk rozchodzi się najszybciej?']);
-        DB::table('questions')->insert(['quiz_id' => 1, 'name' => 'Czego jednostką w układzie SI jest Niuton[N]?']);
-        DB::table('questions')->insert(['quiz_id' => 1, 'name' => 'Co jest cięższe, 1kg stali czy 1kg wody?']);
-
-        DB::table('questions')->insert(['quiz_id' => 2, 'name' => 'Podchodzi do Ciebie obcy kot, co robisz?']);
-        DB::table('questions')->insert(['quiz_id' => 2, 'name' => 'Wstajesz rano, kiedy dasz kotu jeść?']);
     }
 
     /**

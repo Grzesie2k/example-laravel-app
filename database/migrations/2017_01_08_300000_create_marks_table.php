@@ -22,15 +22,8 @@ class CreateMarksTable extends Migration
             $table->foreign('quiz_id')->references('id')->on('quizzes')->onDelete('cascade');
             $table->string('name');
             $table->decimal('value');
+            $table->timestamps();
         });
-
-        DB::table('marks')->insert(['quiz_id' => 1, 'name' => 'Niedostateczny', 'value' => 0]);
-        DB::table('marks')->insert(['quiz_id' => 1, 'name' => 'Dostateczny', 'value' => 1]);
-        DB::table('marks')->insert(['quiz_id' => 1, 'name' => 'Celujący', 'value' => 3]);
-
-        DB::table('marks')->insert(['quiz_id' => 2, 'name' => 'Przeciwnik kotów', 'value' => 0]);
-        DB::table('marks')->insert(['quiz_id' => 2, 'name' => 'Koto obojętny', 'value' => 1]);
-        DB::table('marks')->insert(['quiz_id' => 2, 'name' => 'Fanatyk kotów', 'value' => 2]);
     }
 
     /**

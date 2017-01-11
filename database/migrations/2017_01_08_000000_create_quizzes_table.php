@@ -17,10 +17,8 @@ class CreateQuizzesTable extends Migration
         Schema::create('quizzes', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->timestamps();
         });
-
-        DB::table('quizzes')->insert(['name' => 'Jak dobry jesteś z fizyki?']);
-        DB::table('quizzes')->insert(['name' => 'Czy lubisz koty?']);
     }
 
     /**
