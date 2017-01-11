@@ -71,6 +71,11 @@
                 this.question = null;
                 this.responses = [];
             }
+        },
+        components: {
+            question: require('./Question.vue'),
+            result: require('./Result.vue'),
+            selectQuiz: require('./SelectQuiz.vue')
         }
     }
 </script>

@@ -30,6 +30,9 @@ export default {
             return Api.getQuiz(quiz.id)
                 .then((quiz) => this.$emit('select', quiz));
         }
+    },
+    components: {
+        'question': require('./Question.vue')
     }
 }
 </script>

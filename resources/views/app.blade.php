@@ -11,7 +11,7 @@
         <div class="container" id="app">
             <div class="row">
                 <div class="col-md-6 col-md-offset-3">
-                    <app></app>
+                    <quiz></quiz>
                 </div>
                 <footer class="small text-muted text-right col-md-6 col-md-offset-3">
                     <a href="https://github.com/Grzesie2k" target="_blank">
@@ -22,5 +22,6 @@
         </div>
         <script src="{{ URL::asset('js/vendor.js') }}"></script>
         <script src="{{ URL::asset('js/app.js') }}"></script>
+        <script>new Vue({el: '#app'});</script>
     </body>
 </html>
