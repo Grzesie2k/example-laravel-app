@@ -9,6 +9,7 @@ use App\Quiz;
 use App\Response;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class QuizController extends Controller
 {
@@ -83,10 +84,12 @@ class QuizController extends Controller
             case Method::ID_SUM:
                 return Response::findOrFail($responses)->sum('value');
             case Method::ID_DOMINANT:
-                $responses = array_count_values($responses);
-                $response = array_search(max($responses), $responses);
-
-                return Response::findOrFail($response)->value;
+                return DB::table('responses')
+                    ->select('value', 'question_id', DB::raw('count(id) as total'))
+                    ->whereIn('id', $responses)
+                    ->groupBy('value')->orderBy('total', 'DESC')
+                    ->groupBy('question_id')->orderBy('question_id')
+                    ->value('value');
             default:
                 throw new \Exception("Unknown aggregate function.");
         }
