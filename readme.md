@@ -1,5 +1,5 @@
-# Quiz application
-Example quiz application in Laravel and Vue.
+# Example Laravel (and Vue) app
+Example quiz application written in Laravel and Vue.
 
 ## Installation
 1. Install dependencies with ``comoposer install`` and ``npm install``
@@ -16,3 +16,4 @@ Example quiz application in Laravel and Vue.
 ## Requirements
  - PHP >=5.6.4
  - Node ~6.9.4
+ 
